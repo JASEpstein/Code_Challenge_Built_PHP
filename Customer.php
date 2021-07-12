@@ -1,5 +1,8 @@
 <?php
 
+require_once('FrequentRenterPoints.php');
+require_once('RentalCalculator.php');
+
 class Customer
 {
     /**
@@ -8,9 +11,14 @@ class Customer
     private $name;
 
     /**
+     * @var int
+     */
+    public $amountOwed;
+
+    /**
      * @var Rental[]
      */
-    private $rentals;
+    public $rentals;
 
     /**
      * @param string $name
@@ -40,6 +48,11 @@ class Customer
     /**
      * @return string
      */
+    //$map=function($a,$f){return join("\n",array_map($f,$a));};
+
+    /**
+     * @return string
+     */
     public function statement()
     {
         $totalAmount = 0;
@@ -47,40 +60,31 @@ class Customer
 
         $result = 'Rental Record for ' . $this->name() . PHP_EOL;
 
-        foreach ($this->rentals as $rental) {
-            $thisAmount = 0;
-
-            switch($rental->movie()->priceCode()) {
-                case Movie::REGULAR:
-                    $thisAmount += 2;
-                    if ($rental->daysRented() > 2) {
-                        $thisAmount += ($rental->daysRented() - 2) * 1.5;
-                    }
-                    break;
-                case Movie::NEW_RELEASE:
-                    $thisAmount += $rental->daysRented() * 3;
-                    break;
-                case Movie::CHILDRENS:
-                    $thisAmount += 1.5;
-                    if ($rental->daysRented() > 3) {
-                        $thisAmount += ($rental->daysRented() - 3) * 1.5;
-                    }
-                    break;
-            }
-
-            $totalAmount += $thisAmount;
-
-            $frequentRenterPoints++;
-            if ($rental->movie()->priceCode() === Movie::NEW_RELEASE && $rental->daysRented() > 1) {
-                $frequentRenterPoints++;
-            }
-
-            $result .= "\t" . str_pad($rental->movie()->name(), 30, ' ', STR_PAD_RIGHT) . "\t" . $thisAmount . PHP_EOL;
-        }
+        $result .= RentalCalculator::calculateRentals($this->rentals);
 
         $result .= 'Amount owed is ' . $totalAmount . PHP_EOL;
         $result .= 'You earned ' . $frequentRenterPoints . ' frequent renter points' . PHP_EOL;
 
         return $result;
     }
+
+    public function htmlStatement() 
+    {
+        include('./Template.php');
+    //     return <<<HTML
+    //         <html>
+    //         <h1>Rental Record for <em>{$this->name()}</em></h1>
+    //         <ul>
+    //             {$this->$rentalsHTMLMap()}
+    //             <li>Back to the Future - 3</li>
+    //             <li>Office Space - 3.5</li>
+    //             <li>The Big Lebowski - 15</li>
+    //         <ul>
+    //         <p>Amount owed is <em>21.5</em>
+    //         <p>You earned <em>4</em> frequent renter points</p>
+    //         </html>
+    //     HTML;
+    // VERY IMPORTANT - Don't indent or otherwise format Line 83 or it will break
+    }
 }
+?>

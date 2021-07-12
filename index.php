@@ -3,25 +3,26 @@
 require_once('Movie.php');
 require_once('Rental.php');
 require_once('Customer.php');
+require_once('Categories.php');
 
 $rental1 = new Rental(
     new Movie(
         'Back to the Future',
-        Movie::CHILDRENS
+        Categories::CHILDRENS
     ), 4
 );
 
 $rental2 = new Rental(
     new Movie(
         'Office Space',
-        Movie::REGULAR
+        Categories::REGULAR
     ), 3
 );
 
 $rental3 = new Rental(
     new Movie(
         'The Big Lebowski',
-        Movie::NEW_RELEASE
+        Categories::NEW_RELEASE
     ), 5
 );
 
@@ -32,3 +33,7 @@ $customer->addRental($rental2);
 $customer->addRental($rental3);
 
 echo $customer->statement();
+
+echo $customer->htmlStatement();
+
+?>

@@ -62,3 +62,12 @@ You earned 4 frequent renter points
 2. Include a rough estimate of how much time you spent working on the assignment.
 3. Also include any additional instructions / requirements for running your solution.
 4. Finally, please feel free - though you're not required - to provide some "documentation" to justify any tradeoffs you might have made when writing the code and what implications those tradeoffs may have in the future - especially for the second "task" above.
+
+
+What I would've liked to do:
+- Move all the calculation logic out of the bigger objects into separate ones, creating pure classes
+- Having the calculations in separate classes would mean you could reuse for the HTML statement
+- the Customer.statement() function should only output text, no logic
+- There should be a way to programatically track rentals persistently, so storing rental records in an array of rental objects
+- Store price codes in an array
+- Make the Customer.htmlStatement() generate HTML from a template, rather than from a heredoc
