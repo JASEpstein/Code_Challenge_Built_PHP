@@ -21,6 +21,14 @@ class Customer
     public $rentals;
 
     /**
+     * @return array
+     */
+    public function getRentals()
+    {
+        return $this->$rentals;
+    }
+
+    /**
      * @param string $name
      */
     public function __construct($name)

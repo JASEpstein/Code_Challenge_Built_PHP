@@ -2,11 +2,15 @@
     <head>
     </head>
     <body>
-        <h1>Rental Record for <em><?php echo Customer::name() ?></em></h1>
+        <h1>Rental Record for <em><?php echo $Customer->getRentals() ?></em></h1>
+
+        <!-- <h1>Rental Record for <em><?php echo Customer::name() ?></em></h1> -->
         <ul>
             <?php
-                foreach ($customer->$rentals as $rental) {
-                    echo "<li>".$rental->movie()->name()." - ".$rental->$amountOwed."</li>";
+                foreach(Customer::getRentals() as $X) {
+
+                // foreach ($customer->$rentals as $rental) {
+                    echo $X; //"<li>".$rental->movie()->name()." - ".$rental->$amountOwed."</li>";
                 }
             ?>
         <ul>
