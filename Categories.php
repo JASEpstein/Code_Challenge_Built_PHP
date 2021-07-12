@@ -1,5 +1,6 @@
 <?php
 
+// This class can be changed at will and is now separate from other classes
 class Categories
 {
     const CHILDRENS = 2;

@@ -1,7 +1,5 @@
 <?php
 
-require_once('Categories.php');
-
 class Movie
 {
 

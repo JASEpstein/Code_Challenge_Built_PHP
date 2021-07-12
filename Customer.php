@@ -21,14 +21,6 @@ class Customer
     public $rentals;
 
     /**
-     * @return array
-     */
-    public function getRentals()
-    {
-        return $this->$rentals;
-    }
-
-    /**
      * @param string $name
      */
     public function __construct($name)
@@ -54,9 +46,12 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return array
      */
-    //$map=function($a,$f){return join("\n",array_map($f,$a));};
+    public function getRentals()
+    {
+        return $this->$rentals;
+    }
 
     /**
      * @return string

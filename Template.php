@@ -2,16 +2,15 @@
     <head>
     </head>
     <body>
-        <h1>Rental Record for <em><?php echo $Customer->getRentals() ?></em></h1>
-
-        <!-- <h1>Rental Record for <em><?php echo Customer::name() ?></em></h1> -->
+        <h1>Rental Record for <em><?php echo $this->name() ?></em></h1>
         <ul>
             <?php
-                foreach(Customer::getRentals() as $X) {
-
-                // foreach ($customer->$rentals as $rental) {
-                    echo $X; //"<li>".$rental->movie()->name()." - ".$rental->$amountOwed."</li>";
-                }
+                //echo var_dump(get_object_vars($this));
+                $vars = get_object_vars($this);
+                echo gettype(get_class_vars($this));
+                // foreach (Customer::$rentals as $rental) {
+                //     echo $X; //"<li>".$rental->movie()->name()." - ".$rental->$amountOwed."</li>";
+                // }
             ?>
         <ul>
         <p>Amount owed is <em>21.5</em>
