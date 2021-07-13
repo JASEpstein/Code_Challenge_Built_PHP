@@ -13,7 +13,7 @@ class Customer
     /**
      * @var int
      */
-    public $amountOwed;
+    public $rentalCharge;
 
     /**
      * @var Rental[]
@@ -74,19 +74,19 @@ class Customer
     public function htmlStatement() 
     {
         include('./Template.php');
-    //     return <<<HTML
-    //         <html>
-    //         <h1>Rental Record for <em>{$this->name()}</em></h1>
-    //         <ul>
-    //             {$this->$rentalsHTMLMap()}
-    //             <li>Back to the Future - 3</li>
-    //             <li>Office Space - 3.5</li>
-    //             <li>The Big Lebowski - 15</li>
-    //         <ul>
-    //         <p>Amount owed is <em>21.5</em>
-    //         <p>You earned <em>4</em> frequent renter points</p>
-    //         </html>
-    //     HTML;
+        // return <<<HTML
+        //     <html>
+        //     <h1>Rental Record for <em>{$this->name()}</em></h1>
+        //     <ul>
+        //         {gettype($this)}
+        //         <li>Back to the Future - 3</li>
+        //         <li>Office Space - 3.5</li>
+        //         <li>The Big Lebowski - 15</li>
+        //     <ul>
+        //     <p>Amount owed is <em>21.5</em>
+        //     <p>You earned <em>4</em> frequent renter points</p>
+        //     </html>
+        // HTML;
     // VERY IMPORTANT - Don't indent or otherwise format Line 83 or it will break
     }
 }
