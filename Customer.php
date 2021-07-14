@@ -59,14 +59,16 @@ class Customer
     public function statement()
     {
         $totalAmount = 0;
-        $frequentRenterPoints = 0;
+        $calculationArray = [];
 
         $result = 'Rental Record for ' . $this->name() . PHP_EOL;
 
-        $result .= RentalCalculator::calculateRentals($this->rentals);
+        $calculationArray = RentalCalculator::calculateRentals($this->rentals);
+        //print_r($calculationArray);
 
-        $result .= 'Amount owed is ' . $totalAmount . PHP_EOL;
-        $result .= 'You earned ' . $frequentRenterPoints . ' frequent renter points' . PHP_EOL;
+        $result .= $calculationArray['rentals'];
+        $result .= 'Amount owed is ' . $calculationArray['totalAmount'] . PHP_EOL;
+        $result .= 'You earned ' . $calculationArray['frequentPoints'] . ' frequent renter points' . PHP_EOL;
 
         return $result;
     }
